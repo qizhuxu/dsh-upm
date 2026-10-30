@@ -229,6 +229,7 @@ node scripts/vendor.mjs --from <上游仓库的本地副本>       # 离线打�
 - **按 commit 固定**：先 `git ls-remote` 解析 ref 到具体 sha，再浅克隆该 sha。
 - **关掉换行转换**：Windows 上 `core.autocrlf` 会把签出的 LF 变成 CRLF，导致与上游 git 的字节不一致；克隆显式 `-c core.autocrlf=false -c core.eol=lf`。`.gitattributes` 里 `skills/** -text` 保证签出也不会改写这些字节。
 - **哈希与遍历顺序无关**：`readdir` 的返回顺序不保证（NTFS 与 ext4 不同），所以文件清单按名称排序、再按路径排序后才计算 `treeHash`。不这么做的话，同一份内容在 Windows 与 Linux 上会算出两个值，CI 会误报漂移。
+- **不让解释器写字节码**：所有 Python 调用都带 `-B`，`vendor` 的遍历与复制后清理也会跳过 `__pycache__` / `*.pyc`。否则任何人跑过一次检索，技能目录里就会多出几个 `.pyc`，`--check` 立刻报「有人改过打包内容」——那个报错会把人引到完全错误的方向（这是实测踩到的坑，不是假设）。
 
 `skills/` 由 `scripts/vendor.mjs` 生成，**不要手改**——改了 `--check` 会报 `treeHash` 不符。
 
@@ -266,7 +267,7 @@ node scripts/vendor.mjs --from <上游仓库的本地副本>       # 离线打�
 
 ```bash
 node scripts/vendor.mjs             # 重新打包
-node --test test/plugin.test.mjs    # 30 项插件级测试（假 ctx + 真实 subprocess 垫片，真的跑 Python）
+node --test test/plugin.test.mjs    # 31 项插件级测试（假 ctx + 真实 subprocess 垫片，真的跑 Python）
 node scripts/vendor.mjs --check     # 比对上游与本地打包内容
 ```
 
