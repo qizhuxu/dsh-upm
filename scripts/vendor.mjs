@@ -179,7 +179,10 @@ async function copySkill(fromDir, targetDir, exclude) {
   const applied = [];
   for (const [key, reason] of Object.entries(exclude ?? {})) {
     const target = join(targetDir, key);
-    if (existsSync(target) === false) continue;
+    if (existsSync(target) === false) {
+      log(`注意：排除项 ${key} 在上游已不存在（改名或删除？）——排除没生效，分发体积可能变大`);
+      continue;
+    }
     await rm(target, { recursive: true, force: true });
     applied.push({ path: key, reason });
   }
@@ -275,6 +278,16 @@ async function main() {
         : '';
       if (recordedDirs !== liveDirs) {
         driftReasons.push(`skills/ 下的目录集合与清单不一致：清单 ${recordedDirs || '(空)'} / 目录 ${liveDirs || '(空)'}`);
+      }
+      // 上游可能把被排除的文件改名/删掉。那时排除静默失效（文件只是不再存在），
+      // 体积悄悄变大而没人知道——所以把「配置里声明的排除项」与「清单里实际生效的」对齐检查。
+      const recordedExcludes = [...(localManifest.excluded ?? []).map((item) => item.path)].sort().join(',');
+      const configuredExcludes = Object.keys(exclude).sort().join(',');
+      if (recordedExcludes !== configuredExcludes) {
+        driftReasons.push(
+          `排除项与清单不一致：配置 ${configuredExcludes || '(无)'} / 清单 ${recordedExcludes || '(无)'}` +
+          '——上游可能改了文件名，请检查 upstream.config.json 的 exclude 并重新 vendor'
+        );
       }
     }
     await rm(TMP, { recursive: true, force: true });

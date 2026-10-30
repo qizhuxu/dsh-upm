@@ -295,7 +295,7 @@ Actions 页面点「Enable workflow」即可恢复（或手动 `workflow_dispatc
 
 ```bash
 node scripts/vendor.mjs             # 重新打包
-node --test test/plugin.test.mjs    # 31 项插件级测试（假 ctx + 真实 subprocess 垫片，真的跑 Python）
+node --test test/plugin.test.mjs    # 37 项插件级测试（假 ctx + 真实 subprocess 垫片，真的跑 Python）
 node scripts/vendor.mjs --check     # 比对上游与本地打包内容
 ```
 

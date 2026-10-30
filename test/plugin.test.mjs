@@ -239,10 +239,29 @@ test('upm_domains 列出 12 个域与 22 个技术栈，且条目数为真实值
   assert.match(rendered, /`style`/);
 });
 
-test('upm_domains counts: false 时不读大文件', async () => {
+test('upm_domains counts: false 时不读大文件，且渲染为「未统计」而非「缺失」', async () => {
   const value = await tool('upm_domains').execute({ counts: false }, exec());
   assert.equal(value.ok, true);
-  assert.ok(value.domains.every((item) => item.records === null));
+  assert.ok(value.domains.every((item) => item.records === undefined), '未统计应是 undefined，与「文件缺失」(null) 区分开');
+  const rendered = tool('upm_domains').output.render({}, value)[0].text;
+  assert.match(rendered, /未统计/);
+  assert.doesNotMatch(rendered, /文件缺失/);
+});
+
+test('upm_design_system 的拨盘传了非法值就报错，不静默忽略', async () => {
+  await assert.rejects(() => tool('upm_design_system').execute({ query: 'x', variance: 12 }, exec()), /variance/);
+  await assert.rejects(() => tool('upm_design_system').execute({ query: 'x', density: 'high' }, exec()), /density/);
+  await assert.rejects(() => tool('upm_design_system').execute({ query: 'x', motion: 0 }, exec()), /motion/);
+});
+
+test('upm_search 的 maxResults 会被钳到 1–20', needsPython, async () => {
+  await tool('upm_search').execute({ query: 'glassmorphism', domain: 'style', maxResults: 99 }, exec());
+  const over = state.spawnCalls.at(-1);
+  assert.equal(over[over.indexOf('-n') + 1], '20', '超上限应钳到 20');
+
+  await tool('upm_search').execute({ query: 'glassmorphism', domain: 'style', maxResults: -5 }, exec());
+  const under = state.spawnCalls.at(-1);
+  assert.equal(under[under.indexOf('-n') + 1], '1', '低于下限应钳到 1');
 });
 
 // ---------- 自检 ----------
@@ -371,6 +390,24 @@ test('splitArgs 支持引号里的空格、= 取值与转义引号', () => {
   assert.deepEqual(splitArgs('"C:\\a b\\index.html" --app'), ['C:\\a b\\index.html', '--app']);
   assert.deepEqual(splitArgs('--out="my dir" x'), ['--out=my dir', 'x']);
   assert.deepEqual(splitArgs('"say \\"hi\\""'), ['say "hi"']);
+});
+
+test('splitArgs 对未闭合引号收尾而不是丢字', () => {
+  assert.deepEqual(splitArgs('--out "my dir'), ['--out', 'my dir']);
+  assert.deepEqual(splitArgs('a "b c'), ['a', 'b c']);
+});
+
+test('并发调用只探测一次 Python', needsPython, async () => {
+  const fresh = makeCtx({ pythonPath: PYTHON });
+  const execFresh = { signal: undefined, agent: { session: { header: { cwd: workdir } } } };
+  const searchTool = fresh.tools.find((item) => item.name === 'upm_search');
+  const stackTool = fresh.tools.find((item) => item.name === 'upm_stack');
+  await Promise.all([
+    searchTool.execute({ query: 'focus', domain: 'ux', maxResults: 1 }, execFresh),
+    stackTool.execute({ query: 'streaming', stack: 'nextjs', maxResults: 1 }, execFresh)
+  ]);
+  const probes = fresh.spawnCalls.filter((argv) => argv.includes('-c'));
+  assert.equal(probes.length, 1, '两次并发调用应共用一次探测，实际起了 ' + probes.length + ' 次');
 });
 
 test('/upm-search 缺检索词时给出用法', async () => {
