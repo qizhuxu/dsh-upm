@@ -398,6 +398,22 @@ test('/upm-search 的 --stack 走栈检索', needsPython, async () => {
   assert.match(result.text, /Stack:\*\* nextjs/);
 });
 
+test('/upm-search 不带引号的多词查询会整体作为检索词', needsPython, async () => {
+  const result = await command('upm-search').handler(invoke('keyboard focus modal --domain ux -n 1'));
+  assert.equal(result.kind, 'success', result.text);
+  assert.ok(
+    state.spawnCalls.some((argv) => argv.includes('keyboard focus modal')),
+    '三个词应合成一个查询参数传给 search.py，实际 argv：' + JSON.stringify(state.spawnCalls.at(-1))
+  );
+});
+
+test('/upm-ds 不带引号的多词查询同样整体收下', needsPython, async () => {
+  const result = await command('upm-ds').handler(invoke('fintech mobile wallet -p "Wallet"'));
+  assert.equal(result.kind, 'success', result.text);
+  assert.ok(state.spawnCalls.some((argv) => argv.includes('fintech mobile wallet')));
+  assert.ok(state.spawnCalls.some((argv) => argv.includes('Wallet')));
+});
+
 test('/upm-search 的 -n 缺取值时报错', async () => {
   const result = await command('upm-search').handler(invoke('"x" -n'));
   assert.equal(result.kind, 'error');
