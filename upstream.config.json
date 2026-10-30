@@ -1,0 +1,31 @@
+{
+  "schemaVersion": 1,
+  "comment": "上游清单。vendor.mjs 按这里的 repo + ref + skillPath 拉取技能目录，复制进本仓库 skills/，并生成 upm.manifest.json 与 upstream.lock.json。",
+  "sources": [
+    {
+      "id": "ui-ux-pro-max",
+      "repo": "nextlevelbuilder/ui-ux-pro-max-skill",
+      "ref": "main",
+      "skillPath": ".claude/skills/ui-ux-pro-max",
+      "skillPathComment": "上游仓库里真正的技能目录。src/ 与 cli/assets/ 是同内容的镜像，但 SKILL.md 只在 .claude/skills/ 下手写，所以以这里为准。",
+      "primary": "ui-ux-pro-max",
+      "primaryComment": "技能目录里的哪个 SKILL.md 是本插件的主技能。本插件只做一个技能，primary 恒为该目录名。",
+      "homepage": "https://github.com/nextlevelbuilder/ui-ux-pro-max-skill",
+      "license": "MIT",
+      "licensePath": "LICENSE"
+    }
+  ],
+  "exclude": {
+    "scripts/tests": "上游的 Python 单元测试与 fixture（约 250 KB）：只在上游自己的 CI 里跑，插件运行期用不到。",
+    "data/phosphor-icons-upstream.json": "Phosphor 图标的上游快照（856 KB）：只被上游的 refresh-icon-catalog.py 与 validate_data.py 使用，运行期搜索走 icons.csv。",
+    "data/google-font-licenses.json": "Google Fonts 许可清单（453 KB）：只被上游的刷新/校验脚本使用，运行期搜索走 google-fonts.csv。",
+    "data/data-provenance.json": "数据出处明细（38 KB）：只被上游的 validate_data.py 使用，属于构建期审计资料。"
+  },
+  "excludeComment": "键是相对技能目录的路径；目录名会按前缀整体排除。排除项只影响分发体积，不改变搜索行为——scripts/core.py 与 scripts/design_system.py 都不读它们。",
+  "notes": [
+    "新增的上游数据文件若不在 exclude 里，会被自动纳入，无需改代码。",
+    "上游改了 data/*.csv 的列名时，插件不用改：工具只透传 search.py 的输出。",
+    "上游新增 domain 或 stack 时，lib/catalog.js 里的内置表要同步更新；test/plugin.test.mjs 会用 core.py 校验一致性，漏改会失败。",
+    "exclude 里的条目若在上游被删除，vendor 会忽略它们（不存在就不删），--check 不报错。"
+  ]
+}

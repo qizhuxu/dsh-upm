@@ -1,0 +1,260 @@
+{
+  "schemaVersion": 1,
+  "sources": [
+    {
+      "id": "ui-ux-pro-max",
+      "repo": "nextlevelbuilder/ui-ux-pro-max-skill",
+      "ref": "main",
+      "commit": "28b3b8dee8c976df4fa3e94aed4e092ad43fcb03",
+      "homepage": "https://github.com/nextlevelbuilder/ui-ux-pro-max-skill",
+      "license": "MIT"
+    }
+  ],
+  "skill": {
+    "dir": "ui-ux-pro-max",
+    "name": "ui-ux-pro-max",
+    "files": 44,
+    "bytes": 2030894,
+    "treeHash": "221ad8f0d90751e6600d73d9c112eb7878ec976c9af1909b4f602352b86bd96f",
+    "fileList": [
+      {
+        "path": "SKILL.md",
+        "bytes": 15969,
+        "hash": "ea087c341bfb5b23"
+      },
+      {
+        "path": "data/app-interface.csv",
+        "bytes": 11046,
+        "hash": "331e7cf2c0b222d8"
+      },
+      {
+        "path": "data/catalog-summary.json",
+        "bytes": 2392,
+        "hash": "6638da97231c07fb"
+      },
+      {
+        "path": "data/charts.csv",
+        "bytes": 23365,
+        "hash": "4115cf1120680f2c"
+      },
+      {
+        "path": "data/colors.csv",
+        "bytes": 37940,
+        "hash": "8162429222bce22d"
+      },
+      {
+        "path": "data/google-fonts.csv",
+        "bytes": 747241,
+        "hash": "1c8c3b2ea1faf6a1"
+      },
+      {
+        "path": "data/icons.csv",
+        "bytes": 57945,
+        "hash": "50816c6012030178"
+      },
+      {
+        "path": "data/landing.csv",
+        "bytes": 25449,
+        "hash": "9a2edd3bb676c2a5"
+      },
+      {
+        "path": "data/motion.csv",
+        "bytes": 14679,
+        "hash": "381affe8df8ea1f6"
+      },
+      {
+        "path": "data/products.csv",
+        "bytes": 75623,
+        "hash": "42473f75e8dde598"
+      },
+      {
+        "path": "data/react-performance.csv",
+        "bytes": 15080,
+        "hash": "3d925802539abac5"
+      },
+      {
+        "path": "data/stacks/angular.csv",
+        "bytes": 19863,
+        "hash": "704be83f2bad30c7"
+      },
+      {
+        "path": "data/stacks/astro.csv",
+        "bytes": 14591,
+        "hash": "2c2f55fadaafc05e"
+      },
+      {
+        "path": "data/stacks/avalonia.csv",
+        "bytes": 27327,
+        "hash": "442fca14675a0206"
+      },
+      {
+        "path": "data/stacks/flutter.csv",
+        "bytes": 14192,
+        "hash": "64dba0ac17349f28"
+      },
+      {
+        "path": "data/stacks/html-tailwind.csv",
+        "bytes": 16551,
+        "hash": "d05a581d20af57b8"
+      },
+      {
+        "path": "data/stacks/javafx.csv",
+        "bytes": 33577,
+        "hash": "2e819b8d5abdd23a"
+      },
+      {
+        "path": "data/stacks/jetpack-compose.csv",
+        "bytes": 12295,
+        "hash": "699de218b286948e"
+      },
+      {
+        "path": "data/stacks/laravel.csv",
+        "bytes": 20163,
+        "hash": "854ea4daa5fc6129"
+      },
+      {
+        "path": "data/stacks/nextjs.csv",
+        "bytes": 18687,
+        "hash": "ecd2c27b2ea0127d"
+      },
+      {
+        "path": "data/stacks/nuxt-ui.csv",
+        "bytes": 28700,
+        "hash": "fce682a338cfcdbf"
+      },
+      {
+        "path": "data/stacks/nuxtjs.csv",
+        "bytes": 23014,
+        "hash": "3d9b54ed2d151bd9"
+      },
+      {
+        "path": "data/stacks/react-native.csv",
+        "bytes": 14049,
+        "hash": "ba31dd9c0c04da6b"
+      },
+      {
+        "path": "data/stacks/react.csv",
+        "bytes": 21166,
+        "hash": "4dd176a9787e5c63"
+      },
+      {
+        "path": "data/stacks/shadcn.csv",
+        "bytes": 23184,
+        "hash": "e56cfde5b7490783"
+      },
+      {
+        "path": "data/stacks/svelte.csv",
+        "bytes": 15078,
+        "hash": "f6e379ba802941ba"
+      },
+      {
+        "path": "data/stacks/swiftui.csv",
+        "bytes": 15323,
+        "hash": "bdd9231ff3ad658f"
+      },
+      {
+        "path": "data/stacks/threejs.csv",
+        "bytes": 46769,
+        "hash": "155d583b9c64da0d"
+      },
+      {
+        "path": "data/stacks/uno.csv",
+        "bytes": 30091,
+        "hash": "a0474363e4225b53"
+      },
+      {
+        "path": "data/stacks/uwp.csv",
+        "bytes": 24692,
+        "hash": "c409f08c1fbba1f1"
+      },
+      {
+        "path": "data/stacks/vue.csv",
+        "bytes": 12813,
+        "hash": "b655f1ebb9dff265"
+      },
+      {
+        "path": "data/stacks/winui.csv",
+        "bytes": 27890,
+        "hash": "e676dc1c13ee6c20"
+      },
+      {
+        "path": "data/stacks/wpf.csv",
+        "bytes": 24158,
+        "hash": "9781a9950b203336"
+      },
+      {
+        "path": "data/styles.csv",
+        "bytes": 149478,
+        "hash": "a93a4d9d70258565"
+      },
+      {
+        "path": "data/typography.csv",
+        "bytes": 49997,
+        "hash": "321fc446e8902448"
+      },
+      {
+        "path": "data/ui-reasoning.csv",
+        "bytes": 77360,
+        "hash": "f0774dd741cecdad"
+      },
+      {
+        "path": "data/ux-guidelines.csv",
+        "bytes": 27516,
+        "hash": "ff81ec613f70ba9f"
+      },
+      {
+        "path": "references/pro-rules.md",
+        "bytes": 10909,
+        "hash": "d28442d61c310b49"
+      },
+      {
+        "path": "references/quick-reference.md",
+        "bytes": 24526,
+        "hash": "0609bc7c89dacb40"
+      },
+      {
+        "path": "scripts/core.py",
+        "bytes": 41242,
+        "hash": "dfb34cbca66a704a"
+      },
+      {
+        "path": "scripts/design_system.py",
+        "bytes": 71537,
+        "hash": "e7d1c94c4b2eada1"
+      },
+      {
+        "path": "scripts/reasoning_contract.py",
+        "bytes": 5824,
+        "hash": "b8bac1af82aa280d"
+      },
+      {
+        "path": "scripts/search.py",
+        "bytes": 9373,
+        "hash": "d54e648fe0ec2932"
+      },
+      {
+        "path": "scripts/validate_data.py",
+        "bytes": 52230,
+        "hash": "a599aa256049cf30"
+      }
+    ]
+  },
+  "excluded": [
+    {
+      "path": "scripts/tests",
+      "reason": "上游的 Python 单元测试与 fixture（约 250 KB）：只在上游自己的 CI 里跑，插件运行期用不到。"
+    },
+    {
+      "path": "data/phosphor-icons-upstream.json",
+      "reason": "Phosphor 图标的上游快照（856 KB）：只被上游的 refresh-icon-catalog.py 与 validate_data.py 使用，运行期搜索走 icons.csv。"
+    },
+    {
+      "path": "data/google-font-licenses.json",
+      "reason": "Google Fonts 许可清单（453 KB）：只被上游的刷新/校验脚本使用，运行期搜索走 google-fonts.csv。"
+    },
+    {
+      "path": "data/data-provenance.json",
+      "reason": "数据出处明细（38 KB）：只被上游的 validate_data.py 使用，属于构建期审计资料。"
+    }
+  ]
+}

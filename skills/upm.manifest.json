@@ -1,0 +1,56 @@
+{
+  "schemaVersion": 1,
+  "pluginVersion": "0.1.0",
+  "generatedAt": "2026-10-30T08:45:32.824Z",
+  "upstream": {
+    "version": "2.15.0",
+    "displayName": "UI/UX Pro Max",
+    "name": "ui-ux-pro-max",
+    "repo": "nextlevelbuilder/ui-ux-pro-max-skill"
+  },
+  "sources": [
+    {
+      "id": "ui-ux-pro-max",
+      "repo": "nextlevelbuilder/ui-ux-pro-max-skill",
+      "ref": "main",
+      "commit": "28b3b8dee8c976df4fa3e94aed4e092ad43fcb03",
+      "homepage": "https://github.com/nextlevelbuilder/ui-ux-pro-max-skill",
+      "license": "MIT"
+    }
+  ],
+  "excluded": [
+    {
+      "path": "scripts/tests",
+      "reason": "上游的 Python 单元测试与 fixture（约 250 KB）：只在上游自己的 CI 里跑，插件运行期用不到。"
+    },
+    {
+      "path": "data/phosphor-icons-upstream.json",
+      "reason": "Phosphor 图标的上游快照（856 KB）：只被上游的 refresh-icon-catalog.py 与 validate_data.py 使用，运行期搜索走 icons.csv。"
+    },
+    {
+      "path": "data/google-font-licenses.json",
+      "reason": "Google Fonts 许可清单（453 KB）：只被上游的刷新/校验脚本使用，运行期搜索走 google-fonts.csv。"
+    },
+    {
+      "path": "data/data-provenance.json",
+      "reason": "数据出处明细（38 KB）：只被上游的 validate_data.py 使用，属于构建期审计资料。"
+    }
+  ],
+  "skills": [
+    {
+      "dir": "ui-ux-pro-max",
+      "name": "ui-ux-pro-max",
+      "primary": true,
+      "description": "UI/UX design intelligence for web, mobile, and desktop. This skill should be used when designing, building, reviewing, or fixing interfaces, including pages, components, design systems, accessibility, interaction, responsive layout, typography, color, charts, and stack-specific UI implementation. Searchable local data: 79 searchable styles (50 active), 192 product palettes and reasoning profiles, 74 font pairings, 119 UX guidelines, 105 icons, 17 GSAP presets, 25 chart types, and 22 stacks.",
+      "whenToUse": null,
+      "modelInvocable": true,
+      "userInvocable": true,
+      "source": "ui-ux-pro-max",
+      "origin": "upstream",
+      "bodyStart": 539,
+      "files": 44,
+      "bytes": 2030894,
+      "treeHash": "221ad8f0d90751e6600d73d9c112eb7878ec976c9af1909b4f602352b86bd96f"
+    }
+  ]
+}
