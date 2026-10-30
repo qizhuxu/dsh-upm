@@ -15,6 +15,26 @@ permissions:
   pull-requests: write
 
 jobs:
+  test:
+    # 每次 push / PR 都跑一遍插件测试。没有这个 job 时，改动只有等到真正触发 resync
+    # 才会被测到——也就是「上游恰好在这次改动之后更新」的那一刻，太晚。
+    # matrix 同时把 MIN_VERSION 的设计假设（Python 3.8+）变成实测。
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python: ['3.8', '3.10', '3.12']
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
+        with:
+          node-version: '22'
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '${{ matrix.python }}'
+      - name: 插件测试
+        run: node --test test/plugin.test.mjs
+
   check:
     runs-on: ubuntu-latest
     outputs:
