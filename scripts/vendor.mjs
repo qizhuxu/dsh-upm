@@ -121,21 +121,28 @@ const truthy = (value) => value === true || value === 'true' || value === 'yes' 
 /** 与平台无关的比较：不用 localeCompare（结果随 locale 变），只比代码点。 */
 const byCodePoint = (left, right) => (left < right ? -1 : left > right ? 1 : 0);
 
-/**
- * 遍历目录并给出确定性的文件清单。
+/** 遍历目录并给出确定性的文件清单。
  *
  * **顺序必须固定**：treeHash 由这份清单拼出来，而 readdir 的返回顺序并不保证
  * （NTFS 与 ext4 不同）。不排序的话同一份内容在 Windows 与 Linux 上会算出两个
  * treeHash，--check 就会在 CI 上误报漂移。
+ *
+ * **必须跳过 Python 的运行期产物**：`__pycache__/*.pyc` 是解释器自己写出来的，
+ * 不属于上游内容。第一次有人在本机跑过一次检索，treeHash 就会变，--check 报「有人改过
+ * 打包内容」——那个报错会把人引到完全错误的方向。（真踩过。）
  */
+const RUNTIME_ARTIFACTS = new Set(['__pycache__', '.pytest_cache', '.mypy_cache', '.ruff_cache']);
+
 async function walk(dir, base = dir) {
   const entries = (await readdir(dir, { withFileTypes: true }))
+    .filter((entry) => RUNTIME_ARTIFACTS.has(entry.name) === false)
     .sort((left, right) => byCodePoint(left.name, right.name));
   const files = [];
   for (const entry of entries) {
     const full = join(dir, entry.name);
     if (entry.isDirectory()) files.push(...await walk(full, base));
     else if (entry.isFile()) {
+      if (entry.name.endsWith('.pyc') || entry.name.endsWith('.pyo')) continue;
       const info = await stat(full);
       const rel = full.slice(base.length + 1).split(sep).join('/');
       const hash = createHash('sha256').update(await readFile(full)).digest('hex').slice(0, 16);
@@ -168,6 +175,7 @@ function excludedBy(relPath, exclude) {
 async function copySkill(fromDir, targetDir, exclude) {
   await rm(targetDir, { recursive: true, force: true });
   await cp(fromDir, targetDir, { recursive: true });
+  await stripRuntimeArtifacts(targetDir);
   const applied = [];
   for (const [key, reason] of Object.entries(exclude ?? {})) {
     const target = join(targetDir, key);
@@ -176,6 +184,20 @@ async function copySkill(fromDir, targetDir, exclude) {
     applied.push({ path: key, reason });
   }
   return applied;
+}
+
+/** 删掉本地跑过 Python 之后留下的缓存目录，避免它们混进打包内容。 */
+async function stripRuntimeArtifacts(dir) {
+  const entries = await readdir(dir, { withFileTypes: true });
+  for (const entry of entries) {
+    const full = join(dir, entry.name);
+    if (entry.isDirectory()) {
+      if (RUNTIME_ARTIFACTS.has(entry.name)) { await rm(full, { recursive: true, force: true }); continue; }
+      await stripRuntimeArtifacts(full);
+      continue;
+    }
+    if (entry.name.endsWith('.pyc') || entry.name.endsWith('.pyo')) await rm(full, { force: true });
+  }
 }
 
 /** 读上游仓库根的 skill.json（拿版本与展示名）；没有就返回 unknown。 */
@@ -237,7 +259,7 @@ async function main() {
         const files = await walk(dir);
         const treeHash = treeHashOf(files);
         if (treeHash !== skill.treeHash) {
-          const recorded = new Map((prior?.skill?.files ?? []).map((file) => [file.path, file.hash]));
+          const recorded = new Map((previousLock?.skill?.files ?? []).map((file) => [file.path, file.hash]));
           const changed = files.filter((file) => recorded.get(file.path) !== file.hash).map((file) => file.path);
           const removed = [...recorded.keys()].filter((path) => files.some((file) => file.path === path) === false);
           driftReasons.push(

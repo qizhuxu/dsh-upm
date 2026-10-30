@@ -3,3 +3,9 @@ node_modules/
 .DS_Store
 .vendor-tmp/
 design-system/
+
+# Python 的运行期产物：跑一次检索就会生成，绝不能进打包内容
+__pycache__/
+*.pyc
+*.pyo
+.pytest_cache/

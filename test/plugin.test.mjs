@@ -25,7 +25,7 @@ import { frontmatterModelInvocable, MANIFEST_PATH, SKILLS_DIR, stripFrontmatter 
 /** 找出可用的 Python（与插件里的探测顺序一致，但测试只关心「有没有」）。 */
 function detectPython() {
   for (const argv of [['python'], ['python3'], ['py', '-3']]) {
-    const result = spawnSync(argv[0], [...argv.slice(1), '-c', 'print(1)'], { encoding: 'utf8' });
+    const result = spawnSync(argv[0], [...argv.slice(1), '-B', '-c', 'print(1)'], { encoding: 'utf8' });
     if (result.status === 0) return argv;
   }
   return null;
@@ -254,6 +254,8 @@ test('upm_status 报出上游版本、数据规模与 Python 解释器', async (
   assert.match(value.upstream.commit, /^[0-9a-f]{40}$/);
   assert.ok(value.data.fileCount > 30, '数据文件数应大于 30，实际 ' + String(value.data.fileCount));
   assert.ok(value.data.bytes > 1_000_000);
+  assert.ok(value.bundle.files > 40, '技能包文件数应大于 40，实际 ' + String(value.bundle.files));
+  assert.match(String(value.bundle.treeHash), /^[0-9a-f]{64}$/);
   if (PYTHON !== null) {
     assert.equal(value.python.ok, true, 'Python 应可用：' + String(value.python.error));
     assert.match(String(value.python.version), /^3\./);
@@ -424,7 +426,8 @@ test('lib/catalog.js 的域与栈没有落后于 core.py', { skip: PYTHON === nu
     'import core',
     'print(json.dumps({"domains": list(core.CSV_CONFIG), "stacks": list(core.STACK_CONFIG)}))'
   ].join('\n');
-  const result = spawnSync(PYTHON[0], [...PYTHON.slice(1), '-c', probe, scriptsDir], { encoding: 'utf8' });
+  // `-B` 与插件执行层保持一致：不让解释器把 __pycache__ 写进打包目录
+  const result = spawnSync(PYTHON[0], [...PYTHON.slice(1), '-B', '-c', probe, scriptsDir], { encoding: 'utf8' });
   assert.equal(result.status, 0, '导入 core.py 失败：' + (result.stderr || '').slice(0, 400));
   const data = JSON.parse(result.stdout.trim());
   assert.deepEqual([...data.domains].sort(), [...DOMAIN_IDS].sort(), '搜索域与 core.py 不一致：请更新 lib/catalog.js');
