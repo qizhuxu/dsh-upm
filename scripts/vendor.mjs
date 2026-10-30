@@ -76,7 +76,9 @@ async function assertNoCrlf(dir) {
   if (offenders.length > 0) {
     throw new Error(
       `打包内容含 CRLF，treeHash 将不可复现（换行被转换过）：${offenders.slice(0, 5).join('、')}` +
-      (offenders.length > 5 ? ` 等 ${offenders.length} 个文件` : '')
+      (offenders.length > 5 ? ` 等 ${offenders.length} 个文件` : '') +
+      '\n如果是 --from 指定的本地副本：那个 clone 大概被 Windows 的 core.autocrlf 转换过。' +
+      '请用 `git -c core.autocrlf=false -c core.eol=lf clone <repo> <dir>` 重新取一份，或去掉 --from 直接从 GitHub 拉。'
     );
   }
 }

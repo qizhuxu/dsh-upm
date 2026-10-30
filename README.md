@@ -224,6 +224,10 @@ node scripts/vendor.mjs --check                          # 只比对，有漂移
 node scripts/vendor.mjs --from <上游仓库的本地副本>       # 离线打包
 ```
 
+> `--from` 用的本地副本必须是**未被换行转换**的 clone。Windows 上直接 `git clone` 会把 LF 变成 CRLF，
+> 那样打出来的包 treeHash 与上游对不上，脚本会直接失败并提示。要离线用，请先
+> `git -c core.autocrlf=false -c core.eol=lf clone <repo> <dir>`。
+
 ### 打包为什么是可复现的
 
 - **按 commit 固定**：先 `git ls-remote` 解析 ref 到具体 sha，再浅克隆该 sha。
