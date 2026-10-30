@@ -40,10 +40,31 @@ sudo apt install python3              # Debian / Ubuntu
 ## 安装
 
 ```bash
-dsh plugin --profile desktop add github:qizhuxu/dsh-upm
+dsh plugin --profile <profile> add github:qizhuxu/dsh-upm
 ```
 
 安装后**重启 DSH**（插件在宿主启动时加载，没有热重载）。装好后 `upm_status` 会告诉你打包版本、上游 commit 与 Python 解释器。
+
+> **`desktop` profile 例外**：它由 Electron 应用独占管理，CLI 会直接拒绝——
+> `error: profile "desktop" is managed exclusively by the Electron application`。
+> 装在 desktop 上要走 GUI 的插件面板，或直接改它自己的依赖清单（GUI 写的也是同一个文件）：
+
+```json
+{
+  "dependencies": { "dsh-upm": "github:qizhuxu/dsh-upm" },
+  "dsh": { "profile": { "bundles": ["…", "dsh-upm"] } }
+}
+```
+
+改完在该 profile 目录跑 `pnpm install`，然后重启 DSH。pnpm 会把解析到的 commit 写进
+`pnpm-lock.yaml`（形如 `codeload.github.com/qizhuxu/dsh-upm/tar.gz/<sha>`），
+`node_modules/dsh-upm` 是一份**实体副本**，不是软链。
+
+### 从 Git 仓库装的包少了什么
+
+npm/pnpm 按 `package.json` 的 `files` 字段打包，所以从 GitHub 装下来的副本里
+**没有** `scripts/vendor.mjs`、`test/`、`.github/`、`upstream.config.json`。运行期一样不缺
+（技能、数据、`lib/` 都在），但想在本地重新 vendor 或跑测试，请 clone 源码仓库而不是在这个副本里操作。
 
 ### 从本地目录开发安装
 
@@ -57,8 +78,10 @@ dsh plugin --profile desktop add github:qizhuxu/dsh-upm
 ```
 
 再在该 profile 目录跑 `pnpm install`。`link:` 会让 `node_modules/dsh-upm` 直接指向源码目录，
-改完源码**重启 DSH** 即可生效（仍然没有热重载）。`dsh plugin add` 对 `desktop` profile 不可用
-（它由 Electron 独占管理），所以本地开发只能这样装。
+改完源码**重启 DSH** 即可生效（仍然没有热重载）。
+
+想把 `link:` 换回 GitHub 依赖，把那行改回 `github:qizhuxu/dsh-upm` 再 `pnpm install` 即可——
+pnpm 会把软链换成实体副本，不必手动删目录。
 
 ### 更新（这一步很容易踩坑）
 
