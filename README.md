@@ -51,7 +51,7 @@ dsh plugin --profile desktop add github:qizhuxu/dsh-upm
 
 ```json
 {
-  "dependencies": { "dsh-upm": "link:D:/AI/BeAnything/skills/dsh-upm" },
+  "dependencies": { "dsh-upm": "link:/path/to/dsh-upm" },
   "dsh": { "profile": { "bundles": ["…", "dsh-upm"] } }
 }
 ```
