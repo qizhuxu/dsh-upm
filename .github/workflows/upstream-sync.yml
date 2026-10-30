@@ -19,11 +19,19 @@ jobs:
     # 每次 push / PR 都跑一遍插件测试。没有这个 job 时，改动只有等到真正触发 resync
     # 才会被测到——也就是「上游恰好在这次改动之后更新」的那一刻，太晚。
     # matrix 同时把 MIN_VERSION 的设计假设（Python 3.8+）变成实测。
-    runs-on: ubuntu-latest
+    runs-on: ${{ matrix.os }}
     strategy:
       fail-fast: false
       matrix:
-        python: ['3.8', '3.10', '3.12']
+        # ubuntu-latest 已是 26.04，它的 python-versions 清单里没有 3.8 的构建，
+        # 所以 3.8 这条必须钉在 22.04 上跑——否则会「因为装不上解释器」而假失败。
+        include:
+          - python: '3.8'
+            os: ubuntu-22.04
+          - python: '3.10'
+            os: ubuntu-latest
+          - python: '3.12'
+            os: ubuntu-latest
     steps:
       - uses: actions/checkout@v5
       - uses: actions/setup-node@v5
