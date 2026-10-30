@@ -233,6 +233,34 @@ node scripts/vendor.mjs --from <上游仓库的本地副本>       # 离线打�
 
 `skills/` 由 `scripts/vendor.mjs` 生成，**不要手改**——改了 `--check` 会报 `treeHash` 不符。
 
+### 首次发布后必须做的一步：允许 Actions 开 PR
+
+GitHub **默认不允许** Actions 创建 PR。workflow 里的 `pull-requests: write` 只给了 token 权限，
+真正的闸门是仓库级的另一个开关。不打开它，CI 照样能把分支推上去，但开 PR 那一步会失败：
+
+```
+pull request create failed: GraphQL: GitHub Actions is not permitted to create or approve pull requests
+```
+
+打开方式：仓库 **Settings → Actions → General → Workflow permissions**，勾选
+「Allow GitHub Actions to create and approve pull requests」。或者用 API：
+
+```bash
+curl -X PUT -H "Authorization: token $GH_TOKEN" \
+  https://api.github.com/repos/<owner>/<repo>/actions/permissions/workflow \
+  -d '{"default_workflow_permissions":"write","can_approve_pull_request_reviews":true}'
+```
+
+> 这条是实测踩到的：在临时仓库里演练漂移时，前十步（重新封装、bump 版本、跑测试、自检）
+> 全绿，只有第 11 步失败，而失败原因只出现在日志最后两行。
+
+### 定时任务会被暂停
+
+GitHub 会在仓库连续 **60 天**没有提交活动后自动停用 scheduled workflow。届时到
+Actions 页面点「Enable workflow」即可恢复（或手动 `workflow_dispatch`）。
+本项目在两次上游更新之间本来就没有提交，所以这条迟早会遇到——workflow 同时保留
+`push` 与 `workflow_dispatch` 两个触发器，就是为了让恢复动作只需要点一下。
+
 ### 上游清单与排除项
 
 [`upstream.config.json`](upstream.config.json) 声明上游仓库、技能目录、主技能与要**排除**的路径。被排除的只有「上游构建期用得到、运行期用不到」的东西（约 1.5 MB）：

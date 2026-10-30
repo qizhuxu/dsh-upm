@@ -20,8 +20,8 @@ jobs:
     outputs:
       drift: ${{ steps.check.outcome == 'failure' }}
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
         with:
           node-version: '22'
       - name: 比对上游
@@ -34,8 +34,8 @@ jobs:
     if: needs.check.outputs.drift == 'true'
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
         with:
           node-version: '22'
       - uses: actions/setup-python@v5
