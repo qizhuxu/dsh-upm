@@ -5,7 +5,7 @@
       "id": "ui-ux-pro-max",
       "repo": "nextlevelbuilder/ui-ux-pro-max-skill",
       "ref": "main",
-      "commit": "28b3b8dee8c976df4fa3e94aed4e092ad43fcb03",
+      "commit": "9a3f14f7423037ccb8feeb4fee7482291b9c820e",
       "homepage": "https://github.com/nextlevelbuilder/ui-ux-pro-max-skill",
       "license": "MIT"
     }
@@ -14,8 +14,8 @@
     "dir": "ui-ux-pro-max",
     "name": "ui-ux-pro-max",
     "files": 44,
-    "bytes": 2030894,
-    "treeHash": "221ad8f0d90751e6600d73d9c112eb7878ec976c9af1909b4f602352b86bd96f",
+    "bytes": 2031206,
+    "treeHash": "7ebb50b8f53ac4a4185bc634455179be097ef66c37985cfa12137a0d51aa5e26",
     "fileList": [
       {
         "path": "SKILL.md",
@@ -229,8 +229,8 @@
       },
       {
         "path": "scripts/search.py",
-        "bytes": 9373,
-        "hash": "d54e648fe0ec2932"
+        "bytes": 9685,
+        "hash": "d6aeb52ed42b158c"
       },
       {
         "path": "scripts/validate_data.py",
