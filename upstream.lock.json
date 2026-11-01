@@ -5,7 +5,7 @@
       "id": "ui-ux-pro-max",
       "repo": "nextlevelbuilder/ui-ux-pro-max-skill",
       "ref": "main",
-      "commit": "28b3b8dee8c976df4fa3e94aed4e092ad43fcb03",
+      "commit": "3a13158ff1f32156cbe144108de48eda2ecaed9a",
       "homepage": "https://github.com/nextlevelbuilder/ui-ux-pro-max-skill",
       "license": "MIT"
     }
@@ -14,8 +14,8 @@
     "dir": "ui-ux-pro-max",
     "name": "ui-ux-pro-max",
     "files": 44,
-    "bytes": 2030894,
-    "treeHash": "221ad8f0d90751e6600d73d9c112eb7878ec976c9af1909b4f602352b86bd96f",
+    "bytes": 2034798,
+    "treeHash": "09ef31347e6c411852cdea8c1daa2668f1375d3338633fe70ded2f4d256f0883",
     "fileList": [
       {
         "path": "SKILL.md",
@@ -30,7 +30,7 @@
       {
         "path": "data/catalog-summary.json",
         "bytes": 2392,
-        "hash": "6638da97231c07fb"
+        "hash": "4ca9ee8697984ed6"
       },
       {
         "path": "data/charts.csv",
@@ -119,8 +119,8 @@
       },
       {
         "path": "data/stacks/nuxt-ui.csv",
-        "bytes": 28700,
-        "hash": "fce682a338cfcdbf"
+        "bytes": 32292,
+        "hash": "9c0179d559abe39a"
       },
       {
         "path": "data/stacks/nuxtjs.csv",
@@ -215,7 +215,7 @@
       {
         "path": "scripts/core.py",
         "bytes": 41242,
-        "hash": "dfb34cbca66a704a"
+        "hash": "7a4a109c200ab363"
       },
       {
         "path": "scripts/design_system.py",
@@ -229,8 +229,8 @@
       },
       {
         "path": "scripts/search.py",
-        "bytes": 9373,
-        "hash": "d54e648fe0ec2932"
+        "bytes": 9685,
+        "hash": "d6aeb52ed42b158c"
       },
       {
         "path": "scripts/validate_data.py",
