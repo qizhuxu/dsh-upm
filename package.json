@@ -1,6 +1,6 @@
 {
   "name": "dsh-upm",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "ui-ux-pro-max 的 DeepSeek Harness 原生插件：技能随包走，上游搜索脚本注册成原生工具与命令，数据可随上游自动重新封装",
   "license": "MIT",
   "author": "dsh-upm contributors",
