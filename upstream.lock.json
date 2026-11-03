@@ -5,7 +5,7 @@
       "id": "ui-ux-pro-max",
       "repo": "nextlevelbuilder/ui-ux-pro-max-skill",
       "ref": "main",
-      "commit": "28b3b8dee8c976df4fa3e94aed4e092ad43fcb03",
+      "commit": "713eef51b04efc98d6fa565323b495f7c9c89fd4",
       "homepage": "https://github.com/nextlevelbuilder/ui-ux-pro-max-skill",
       "license": "MIT"
     }
@@ -14,13 +14,13 @@
     "dir": "ui-ux-pro-max",
     "name": "ui-ux-pro-max",
     "files": 44,
-    "bytes": 2030894,
-    "treeHash": "221ad8f0d90751e6600d73d9c112eb7878ec976c9af1909b4f602352b86bd96f",
+    "bytes": 2041017,
+    "treeHash": "b0a9ece3c520fef519ce7022e6a168b944c77823f92b739b41c5b3af328ec4b5",
     "fileList": [
       {
         "path": "SKILL.md",
-        "bytes": 15969,
-        "hash": "ea087c341bfb5b23"
+        "bytes": 16646,
+        "hash": "1bdfb422c97d5e81"
       },
       {
         "path": "data/app-interface.csv",
@@ -30,7 +30,7 @@
       {
         "path": "data/catalog-summary.json",
         "bytes": 2392,
-        "hash": "6638da97231c07fb"
+        "hash": "4ca9ee8697984ed6"
       },
       {
         "path": "data/charts.csv",
@@ -64,8 +64,8 @@
       },
       {
         "path": "data/products.csv",
-        "bytes": 75623,
-        "hash": "42473f75e8dde598"
+        "bytes": 76959,
+        "hash": "5756125e2b0e0d23"
       },
       {
         "path": "data/react-performance.csv",
@@ -119,8 +119,8 @@
       },
       {
         "path": "data/stacks/nuxt-ui.csv",
-        "bytes": 28700,
-        "hash": "fce682a338cfcdbf"
+        "bytes": 32292,
+        "hash": "9c0179d559abe39a"
       },
       {
         "path": "data/stacks/nuxtjs.csv",
@@ -184,8 +184,8 @@
       },
       {
         "path": "data/styles.csv",
-        "bytes": 149478,
-        "hash": "a93a4d9d70258565"
+        "bytes": 150036,
+        "hash": "a6b37e5925d20b4c"
       },
       {
         "path": "data/typography.csv",
@@ -214,8 +214,8 @@
       },
       {
         "path": "scripts/core.py",
-        "bytes": 41242,
-        "hash": "dfb34cbca66a704a"
+        "bytes": 43933,
+        "hash": "caf92bdcf2579c9a"
       },
       {
         "path": "scripts/design_system.py",
@@ -229,8 +229,8 @@
       },
       {
         "path": "scripts/search.py",
-        "bytes": 9373,
-        "hash": "d54e648fe0ec2932"
+        "bytes": 10642,
+        "hash": "9fd5acc991142fd4"
       },
       {
         "path": "scripts/validate_data.py",
