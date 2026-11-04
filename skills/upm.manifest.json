@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
-  "pluginVersion": "0.1.1",
-  "generatedAt": "2026-11-03T12:06:02.462Z",
+  "pluginVersion": "0.1.2",
+  "generatedAt": "2026-11-04T12:19:43.020Z",
   "upstream": {
     "version": "2.15.0",
     "displayName": "UI/UX Pro Max",
@@ -13,7 +13,7 @@
       "id": "ui-ux-pro-max",
       "repo": "nextlevelbuilder/ui-ux-pro-max-skill",
       "ref": "main",
-      "commit": "713eef51b04efc98d6fa565323b495f7c9c89fd4",
+      "commit": "dd9a1b4cf9f67ca2e326f646d93e101b2778db30",
       "homepage": "https://github.com/nextlevelbuilder/ui-ux-pro-max-skill",
       "license": "MIT"
     }
