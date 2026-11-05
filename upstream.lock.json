@@ -5,7 +5,7 @@
       "id": "ui-ux-pro-max",
       "repo": "nextlevelbuilder/ui-ux-pro-max-skill",
       "ref": "main",
-      "commit": "713eef51b04efc98d6fa565323b495f7c9c89fd4",
+      "commit": "b7d5353e0130feb8c5574ef1251f8a1db1873ccb",
       "homepage": "https://github.com/nextlevelbuilder/ui-ux-pro-max-skill",
       "license": "MIT"
     }
@@ -14,13 +14,13 @@
     "dir": "ui-ux-pro-max",
     "name": "ui-ux-pro-max",
     "files": 44,
-    "bytes": 2041017,
-    "treeHash": "b0a9ece3c520fef519ce7022e6a168b944c77823f92b739b41c5b3af328ec4b5",
+    "bytes": 2043939,
+    "treeHash": "2ab4d6c6a428669d3ff97939a250a6aa63a05ca7dddee860dfc028ef40da55cf",
     "fileList": [
       {
         "path": "SKILL.md",
         "bytes": 16646,
-        "hash": "1bdfb422c97d5e81"
+        "hash": "9aa50bd44076db28"
       },
       {
         "path": "data/app-interface.csv",
@@ -30,7 +30,7 @@
       {
         "path": "data/catalog-summary.json",
         "bytes": 2392,
-        "hash": "4ca9ee8697984ed6"
+        "hash": "9fa00e187772ce23"
       },
       {
         "path": "data/charts.csv",
@@ -184,8 +184,8 @@
       },
       {
         "path": "data/styles.csv",
-        "bytes": 150036,
-        "hash": "a6b37e5925d20b4c"
+        "bytes": 152958,
+        "hash": "a9b6cadbd1cb9e7c"
       },
       {
         "path": "data/typography.csv",
