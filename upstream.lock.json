@@ -5,7 +5,7 @@
       "id": "ui-ux-pro-max",
       "repo": "nextlevelbuilder/ui-ux-pro-max-skill",
       "ref": "main",
-      "commit": "9b675f0b13c9c28dec445e8ce4633c18c39b6467",
+      "commit": "f2cc36555984fbfb08f1dca037da2467578f33d2",
       "homepage": "https://github.com/nextlevelbuilder/ui-ux-pro-max-skill",
       "license": "MIT"
     }
@@ -13,14 +13,14 @@
   "skill": {
     "dir": "ui-ux-pro-max",
     "name": "ui-ux-pro-max",
-    "files": 44,
-    "bytes": 2044980,
-    "treeHash": "9efefcb417b52b8e1cef9ee0ec4f4fed140a6e409f5d032fd70e42ae37f9e63c",
+    "files": 45,
+    "bytes": 2077821,
+    "treeHash": "e664bef1e1095ba478bb5717ab6d48b62988c3ad8c7646fe398363de2b3ab728",
     "fileList": [
       {
         "path": "SKILL.md",
-        "bytes": 16646,
-        "hash": "14f43337edfbf782"
+        "bytes": 18640,
+        "hash": "af9cf89efd1eac29"
       },
       {
         "path": "data/app-interface.csv",
@@ -219,8 +219,13 @@
       },
       {
         "path": "scripts/design_system.py",
-        "bytes": 71537,
-        "hash": "e7d1c94c4b2eada1"
+        "bytes": 80253,
+        "hash": "043ed3f404214869"
+      },
+      {
+        "path": "scripts/preview.py",
+        "bytes": 19155,
+        "hash": "2900f6b4307439c2"
       },
       {
         "path": "scripts/reasoning_contract.py",
@@ -229,8 +234,8 @@
       },
       {
         "path": "scripts/search.py",
-        "bytes": 10642,
-        "hash": "9fd5acc991142fd4"
+        "bytes": 13618,
+        "hash": "6b52ebb01480058c"
       },
       {
         "path": "scripts/validate_data.py",
