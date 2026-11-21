@@ -5,7 +5,7 @@
       "id": "ui-ux-pro-max",
       "repo": "nextlevelbuilder/ui-ux-pro-max-skill",
       "ref": "main",
-      "commit": "9b675f0b13c9c28dec445e8ce4633c18c39b6467",
+      "commit": "2de1134dc4d1cfe112934611ae5803ae17a1bd7e",
       "homepage": "https://github.com/nextlevelbuilder/ui-ux-pro-max-skill",
       "license": "MIT"
     }
@@ -13,14 +13,14 @@
   "skill": {
     "dir": "ui-ux-pro-max",
     "name": "ui-ux-pro-max",
-    "files": 44,
-    "bytes": 2044980,
-    "treeHash": "9efefcb417b52b8e1cef9ee0ec4f4fed140a6e409f5d032fd70e42ae37f9e63c",
+    "files": 45,
+    "bytes": 2089842,
+    "treeHash": "35f3707d665c8dc1a29f87e2ae4bcdcd9c2818b2ab6a00049f83de8ace4f3f6c",
     "fileList": [
       {
         "path": "SKILL.md",
-        "bytes": 16646,
-        "hash": "14f43337edfbf782"
+        "bytes": 18640,
+        "hash": "bee6aa0382bc1509"
       },
       {
         "path": "data/app-interface.csv",
@@ -30,17 +30,17 @@
       {
         "path": "data/catalog-summary.json",
         "bytes": 2392,
-        "hash": "b27655fbce8fec64"
+        "hash": "5958a771e0358ec4"
       },
       {
         "path": "data/charts.csv",
-        "bytes": 23365,
-        "hash": "4115cf1120680f2c"
+        "bytes": 23682,
+        "hash": "80045f5793cbeca3"
       },
       {
         "path": "data/colors.csv",
-        "bytes": 37940,
-        "hash": "8162429222bce22d"
+        "bytes": 38488,
+        "hash": "f14cc97bc4c3527e"
       },
       {
         "path": "data/google-fonts.csv",
@@ -64,8 +64,8 @@
       },
       {
         "path": "data/products.csv",
-        "bytes": 76959,
-        "hash": "5756125e2b0e0d23"
+        "bytes": 78382,
+        "hash": "2b78d254f0fe0cc1"
       },
       {
         "path": "data/react-performance.csv",
@@ -194,13 +194,13 @@
       },
       {
         "path": "data/ui-reasoning.csv",
-        "bytes": 77360,
-        "hash": "f0774dd741cecdad"
+        "bytes": 78979,
+        "hash": "60b8b1a0fc426d65"
       },
       {
         "path": "data/ux-guidelines.csv",
-        "bytes": 28310,
-        "hash": "d63dc39439cf615c"
+        "bytes": 34991,
+        "hash": "9c473c1104e93f3d"
       },
       {
         "path": "references/pro-rules.md",
@@ -209,8 +209,8 @@
       },
       {
         "path": "references/quick-reference.md",
-        "bytes": 24773,
-        "hash": "fc53ccfafaa08d40"
+        "bytes": 25985,
+        "hash": "a2628145f48f076d"
       },
       {
         "path": "scripts/core.py",
@@ -219,8 +219,13 @@
       },
       {
         "path": "scripts/design_system.py",
-        "bytes": 71537,
-        "hash": "e7d1c94c4b2eada1"
+        "bytes": 80253,
+        "hash": "043ed3f404214869"
+      },
+      {
+        "path": "scripts/preview.py",
+        "bytes": 19155,
+        "hash": "2900f6b4307439c2"
       },
       {
         "path": "scripts/reasoning_contract.py",
@@ -229,13 +234,13 @@
       },
       {
         "path": "scripts/search.py",
-        "bytes": 10642,
-        "hash": "9fd5acc991142fd4"
+        "bytes": 13618,
+        "hash": "6b52ebb01480058c"
       },
       {
         "path": "scripts/validate_data.py",
-        "bytes": 52230,
-        "hash": "a599aa256049cf30"
+        "bytes": 52451,
+        "hash": "e31ef4e1db1e6bb7"
       }
     ]
   },
